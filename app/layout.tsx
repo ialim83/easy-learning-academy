@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignOutUrl="/sign-in">
       {/* <header className="flex h-16 items-center justify-end gap-4 p-4"> */}
       <html
         lang="en"
@@ -43,12 +43,12 @@ export default function RootLayout({
       >
         <body>
           <ThemeProvider>
-            <Show when="signed-in">
+            {/* <Show when="signed-in"> */}
               <SignInButton />
-            </Show>
-            <Show when="signed-out">
+            {/* </Show> */}
+            {/* <Show when="signed-out"> */}
               <SignUpButton />
-            </Show>
+            {/* </Show> */}
             {children}
           </ThemeProvider>
         </body>
