@@ -44,10 +44,10 @@ export default function RootLayout({
         <body>
           <ThemeProvider>
             {/* <Show when="signed-in"> */}
-              <SignInButton />
+              {/* <SignInButton /> */}
             {/* </Show> */}
             {/* <Show when="signed-out"> */}
-              <SignUpButton />
+              {/* <SignUpButton /> */}
             {/* </Show> */}
             {children}
           </ThemeProvider>
