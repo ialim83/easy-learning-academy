@@ -27,22 +27,25 @@ model Course {
   category   Category @relation(fields: [categoryId], references: [id])
 
   subcategoryId String
-  subCategory SubCategory @relation(fields: [subcategoryId], references: [id])
+  subCategory SubCategory @relation(fields: [subcategoryId], references: [id]])
+
+  @@index([categoryId])
+  @@index([subcategoryId])
 }
 
 model Category {
-  id      String   @id @default(uuid())
-  name String @unique
+  id            String        @id @default(uuid())
+  name          String        @unique
   subcategories SubCategory[]
-  courses Course[]
+  courses       Course[]
 }
 
 model SubCategory {
-  id      String   @id @default(uuid())
+  id   String @id @default(uuid())
   name String @unique
 
   categoryId String
-  category Category @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
 
   course Course[]
 
