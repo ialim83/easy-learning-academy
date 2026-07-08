@@ -1,8 +1,10 @@
+"use client"
 import { BarChart4, MonitorPlay } from "lucide-react"
 import Link from "next/link"
-import React from "react"
+import { usePathname } from "next/navigation"
 
 const Sidebar = () => {
+  const pathname = usePathname()
   const sideBarRoutes = [
     { icon: <MonitorPlay />, label: "Courses", path: "/instructor/courses" },
     {
@@ -17,9 +19,9 @@ const Sidebar = () => {
         <Link
           href={route.path}
           key={route.path}
-          className="flex items-center gap-4 p-3 hover:bg-[#fff8eb]"
+          className={`flex items-center gap-4 p-3 hover:bg-[#fff8eb] ${pathname.startsWith(route.path) && "bg-[#fdab04] hover:bg-[#fdab04]/90"}`}
         >
-          {route.label}
+          {route.icon} {route.label}
         </Link>
       ))}
     </div>
