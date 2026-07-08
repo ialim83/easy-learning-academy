@@ -9,6 +9,42 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider     = "mysql"
   relationMode = "prisma"
+}
+
+model Course {
+  id           String  @id @default(uuid())
+  instructorId String
+  title        String  @db.Text
+  subtitle     String? @db.Text
+  description  String? @db.Text
+  imageUrl     String? @db.Text
+  price        Float?
+  isPublished  Boolean @default(false)
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  subcategoryId String
+  subCategory SubCategory @relation(fields: [subcategoryId], references: [id])
+}
+
+model Category {
+  id      String   @id @default(uuid())
+  name String @unique
+  subcategories SubCategory[]
+  courses Course[]
+}
+
+model SubCategory {
+  id      String   @id @default(uuid())
+  name String @unique
+
+  categoryId String
+  category Category @relation(fields: [categoryId], references: [id])
+
+  course Course[]
+
+  @@index([categoryId])
 }
