@@ -1,15 +1,9 @@
 import "./globals.css"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Metadata } from "next"
-import {
-  ClerkProvider,
-  Show,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs"
+import { ClerkProvider } from "@clerk/nextjs"
 import { ThemeProvider } from "next-themes"
-import { cn } from "@/lib/utils.ts"
+import { cn } from "@/lib/utils"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -30,7 +24,6 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider afterSignOutUrl="/sign-in">
-      {/* <header className="flex h-16 items-center justify-end gap-4 p-4"> */}
       <html
         lang="en"
         suppressHydrationWarning
@@ -42,18 +35,9 @@ export default function RootLayout({
         )}
       >
         <body>
-          <ThemeProvider>
-            {/* <Show when="signed-in"> */}
-              {/* <SignInButton /> */}
-            {/* </Show> */}
-            {/* <Show when="signed-out"> */}
-              {/* <SignUpButton /> */}
-            {/* </Show> */}
-            {children}
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </body>
       </html>
-      {/* </header> */}
     </ClerkProvider>
   )
 }
